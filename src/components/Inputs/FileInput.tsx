@@ -20,7 +20,7 @@ const FileInput = ({
                 {...props}
                 onChange={e => {
                     if (e.currentTarget.files) {
-                        setFieldValue('photo', e.currentTarget.files[0])
+                        setFieldValue('avatar', e.currentTarget.files[0])
                     }
                 }}
             />

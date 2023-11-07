@@ -8,11 +8,11 @@ import validationSchema from './Schema'
 
 const ContractorForm = () => {
     const initialValues = {
-        firstName: '',
-        lastName: '',
+        name: '',
+        surname: '',
         type: 'person',
-        identityNumber: '',
-        photo: null
+        id: '',
+        avatar: null
     }
 
     const options = [
@@ -31,19 +31,19 @@ const ContractorForm = () => {
             {({ isSubmitting, errors, touched, values, setFieldValue }) => (
                 <Form noValidate>
                     <Field
-                        name='firstName'
+                        name='name'
                         label='First name:'
                         component={TextInput}
-                        error={errors.firstName}
-                        touched={touched.firstName}
+                        error={errors.name}
+                        touched={touched.name}
                     />
 
                     <Field
-                        name='lastName'
+                        name='surname'
                         label='Last name:'
                         component={TextInput}
-                        error={errors.lastName}
-                        touched={touched.lastName}
+                        error={errors.surname}
+                        touched={touched.surname}
                     />
 
                     <Field
@@ -56,26 +56,26 @@ const ContractorForm = () => {
                     />
 
                     <Field
-                        name='identityNumber'
+                        name='id'
                         label='Identity number:'
                         component={TextInput}
-                        error={errors.identityNumber}
-                        touched={touched.identityNumber}
+                        error={errors.id}
+                        touched={touched.id}
                     />
 
                     <Field
-                        name='photo'
-                        label='Photo:'
+                        name='avatar'
+                        label='avatar:'
                         component={FileInput}
-                        error={errors.photo}
-                        touched={touched.photo}
+                        error={errors.avatar}
+                        touched={touched.avatar}
                         setFieldValue={setFieldValue}
                     />
 
-                    {values.photo && (
+                    {values.avatar && (
                         <div>
                             <img
-                                src={URL.createObjectURL(values.photo)}
+                                src={URL.createObjectURL(values.avatar)}
                                 alt='Podgląd zdjęcia'
                             />
                         </div>
