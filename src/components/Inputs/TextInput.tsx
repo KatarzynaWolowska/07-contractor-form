@@ -1,4 +1,13 @@
-const TextInput = ({ type, name, label, placeholder, field, ...props }) => {
+const TextInput = ({
+    type,
+    name,
+    label,
+    placeholder,
+    field,
+    error,
+    touched,
+    ...props
+}) => {
     return (
         <div>
             {label && <label htmlFor={name}>{label}</label>}
@@ -10,6 +19,7 @@ const TextInput = ({ type, name, label, placeholder, field, ...props }) => {
                 {...field}
                 {...props}
             />
+            <p className='error'>{error && touched ? error : null}</p>
         </div>
     )
 }

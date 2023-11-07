@@ -1,4 +1,4 @@
-const Select = ({ name, label, options, field, props }) => {
+const Select = ({ name, label, options, field, error, touched, props }) => {
     return (
         <>
             <label htmlFor={name}>{label}</label>
@@ -9,6 +9,7 @@ const Select = ({ name, label, options, field, props }) => {
                     </option>
                 ))}
             </select>
+            <p className='error'>{error && touched ? error : null}</p>
         </>
     )
 }

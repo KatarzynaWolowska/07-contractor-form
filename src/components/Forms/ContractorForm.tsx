@@ -1,4 +1,4 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik'
+import { Field, Form, Formik } from 'formik'
 import FileInput from '../Inputs/FileInput'
 
 import Select from '../Inputs/Select'
@@ -10,9 +10,9 @@ const ContractorForm = () => {
     const initialValues = {
         firstName: '',
         lastName: '',
-        type: '',
+        type: 'person',
         identityNumber: '',
-        photo: ''
+        photo: null
     }
 
     const options = [
@@ -28,39 +28,58 @@ const ContractorForm = () => {
                 setSubmitting(false)
                 alert(JSON.stringify(values, null, 2))
             }}>
-            {({ isSubmitting, errors, touched, values }) => (
+            {({ isSubmitting, errors, touched, values, setFieldValue }) => (
                 <Form noValidate>
                     <Field
                         name='firstName'
                         label='First name:'
                         component={TextInput}
+                        error={errors.firstName}
+                        touched={touched.firstName}
                     />
-                    <ErrorMessage component='div' name='firstName' />
 
                     <Field
                         name='lastName'
                         label='Last name:'
                         component={TextInput}
+                        error={errors.lastName}
+                        touched={touched.lastName}
                     />
-                    <ErrorMessage name='lastName' />
 
                     <Field
                         name='type'
                         label='Choose type:'
                         component={Select}
                         options={options}
+                        error={errors.type}
+                        touched={touched.type}
                     />
-                    <ErrorMessage name='type' />
 
                     <Field
                         name='identityNumber'
                         label='Identity number:'
                         component={TextInput}
+                        error={errors.identityNumber}
+                        touched={touched.identityNumber}
                     />
-                    <ErrorMessage name='identityNumber' />
 
-                    {/* <Field name='photo' label='Photo:' component={FileInput} />
-                    <ErrorMessage name='photo' /> */}
+                    <Field
+                        name='photo'
+                        label='Photo:'
+                        component={FileInput}
+                        error={errors.photo}
+                        touched={touched.photo}
+                        setFieldValue={setFieldValue}
+                    />
+
+                    {values.photo && (
+                        <div>
+                            <img
+                                src={URL.createObjectURL(values.photo)}
+                                alt='Podgląd zdjęcia'
+                            />
+                        </div>
+                    )}
 
                     {!isSubmitting && <button type='submit'>Submit</button>}
 
