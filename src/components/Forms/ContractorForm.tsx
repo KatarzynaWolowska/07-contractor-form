@@ -37,6 +37,7 @@ const ContractorForm = () => {
                         component={TextInput}
                         error={errors.name}
                         touched={touched.name}
+                        required
                     />
 
                     <Field
@@ -45,6 +46,7 @@ const ContractorForm = () => {
                         component={TextInput}
                         error={errors.surname}
                         touched={touched.surname}
+                        required
                     />
 
                     <Field
@@ -54,6 +56,7 @@ const ContractorForm = () => {
                         options={options}
                         error={errors.type}
                         touched={touched.type}
+                        required
                     />
 
                     <Field
@@ -62,15 +65,17 @@ const ContractorForm = () => {
                         component={TextInput}
                         error={errors.id}
                         touched={touched.id}
+                        required
                     />
 
                     <Field
                         name='avatar'
-                        label='avatar:'
+                        label='Avatar:'
                         component={FileInput}
                         error={errors.avatar}
                         touched={touched.avatar}
                         setFieldValue={setFieldValue}
+                        required
                     />
 
                     {values.avatar && (
