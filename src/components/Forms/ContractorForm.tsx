@@ -1,4 +1,5 @@
 import { Field, Form, Formik } from 'formik'
+import Avatar from '../Avatar'
 import FileInput from '../Inputs/FileInput'
 
 import Select from '../Inputs/Select'
@@ -73,12 +74,10 @@ const ContractorForm = () => {
                     />
 
                     {values.avatar && (
-                        <div>
-                            <img
-                                src={URL.createObjectURL(values.avatar)}
-                                alt='Podgląd zdjęcia'
-                            />
-                        </div>
+                        <Avatar
+                            src={URL.createObjectURL(values.avatar)}
+                            alt='Podgląd zdjęcia'
+                        />
                     )}
 
                     {!isSubmitting && <button type='submit'>Submit</button>}
