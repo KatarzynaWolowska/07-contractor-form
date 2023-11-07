@@ -5,7 +5,7 @@ import FileInput from '../Inputs/FileInput'
 import Select from '../Inputs/Select'
 import TextInput from '../Inputs/TextInput'
 import FormSummary from './FormSummary'
-import validationSchema from './Schema'
+import validationSchema from './Schema/Schema'
 
 const ContractorForm = () => {
     const initialValues = {
@@ -34,6 +34,7 @@ const ContractorForm = () => {
                     <Field
                         name='name'
                         label='First name:'
+                        placeholder='First name'
                         component={TextInput}
                         error={errors.name}
                         touched={touched.name}
@@ -43,6 +44,7 @@ const ContractorForm = () => {
                     <Field
                         name='surname'
                         label='Last name:'
+                        placeholder='Last name'
                         component={TextInput}
                         error={errors.surname}
                         touched={touched.surname}
@@ -62,6 +64,7 @@ const ContractorForm = () => {
                     <Field
                         name='id'
                         label='Identity number:'
+                        placeholder='Identity number'
                         component={TextInput}
                         error={errors.id}
                         touched={touched.id}
@@ -71,6 +74,7 @@ const ContractorForm = () => {
                     <Field
                         name='avatar'
                         label='Avatar:'
+                        placeholder='Avatar'
                         component={FileInput}
                         error={errors.avatar}
                         touched={touched.avatar}

@@ -15,7 +15,7 @@ const TextInput = ({
                 name={name}
                 type={type}
                 id={name}
-                placeholder={placeholder || label}
+                placeholder={placeholder}
                 {...field}
                 {...props}
             />

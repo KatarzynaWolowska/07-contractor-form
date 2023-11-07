@@ -1,4 +1,5 @@
 import * as Yup from 'yup'
+import validatePesel from './validate'
 
 const validationSchema = Yup.object({
     name: Yup.string().required('Required'),
@@ -7,7 +8,9 @@ const validationSchema = Yup.object({
     id: Yup.string().when('type', {
         is: value => value === 'person',
         then: schema =>
-            schema.required('Required').matches(/^\d{11}$/, 'PESEL required'),
+            schema
+                .matches(/^[0-9]{11}$/, 'PESEL must be exactly 11 digits')
+                .test('pesel', 'Invalid PESEL', value => validatePesel(value)),
         otherwise: schema =>
             schema.required('Required').matches(/^\d{10}$/, 'NIP required')
     }),
