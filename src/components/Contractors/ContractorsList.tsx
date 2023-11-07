@@ -1,20 +1,10 @@
-const ContractorList = ({ contractors, onEdit, onDelete }) => {
+import ContractorItem from './ContractorItem'
+
+const ContractorList = ({ contractors }) => {
     return (
         <div>
             {contractors.map(contractor => (
-                <div key={contractor.id}>
-                    <img
-                        src={contractor.avatar}
-                        alt={`${contractor.name} ${contractor.surname}`}
-                    />
-                    <p>
-                        {contractor.name} {contractor.surname}
-                    </p>
-                    <button onClick={() => onEdit(contractor)}>Edytuj</button>
-                    <button onClick={() => onDelete(contractor.id)}>
-                        Usuń
-                    </button>
-                </div>
+                <ContractorItem contractor={contractor} />
             ))}
         </div>
     )

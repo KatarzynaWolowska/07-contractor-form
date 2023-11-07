@@ -1,23 +1,19 @@
 // import { useEffect, useState } from 'react'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import ContractorForm from './components/Forms/ContractorForm'
+import Home from './pages/Home'
+import PageNotFound from './pages/PageNotFound'
 
 function App() {
-    // const [data, setData] = useState('')
-
-    // useEffect(() => {
-    //     fetch('https://6546492dfe036a2fa955757c.mockapi.io/contrators')
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             setData(data)
-    //         })
-    //     console.log('fetch')
-    // }, [])
-
     return (
-        <>
-            {/* {data} */}
-            <ContractorForm />
-        </>
+        <BrowserRouter>
+            <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/contractors/:id' element={<ContractorForm />} />
+                <Route path='/404' element={<PageNotFound />} />
+                <Route path='*' element={<Navigate to='/404' />} />
+            </Routes>
+        </BrowserRouter>
     )
 }
 
