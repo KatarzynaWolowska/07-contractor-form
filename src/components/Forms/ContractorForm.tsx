@@ -1,9 +1,8 @@
-import { Paper } from '@mui/material'
+import { Avatar, Paper } from '@mui/material'
 import { Field, Form, Formik } from 'formik'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import API from '../../api'
-import Avatar from '../Avatar'
 import Button from '../Buttons/CustomButton'
 import FileInput from '../Inputs/FileInput'
 import Select from '../Inputs/Select'
@@ -102,6 +101,7 @@ const ContractorForm = () => {
                         <Field
                             name='avatar'
                             label='Avatar:'
+                            btnLabel={data?.avatar && 'Change avatar'}
                             placeholder='Avatar'
                             component={FileInput}
                             error={errors.avatar}
@@ -117,7 +117,8 @@ const ContractorForm = () => {
                                         ? values.avatar
                                         : URL.createObjectURL(values.avatar)
                                 }
-                                alt='Podgląd zdjęcia'
+                                alt='Photo'
+                                sx={{ width: 100, height: 100 }}
                             />
                         )}
 

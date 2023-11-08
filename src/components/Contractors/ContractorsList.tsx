@@ -15,6 +15,7 @@ const ContractorList = ({ contractors }) => {
                 <TableHead>
                     <TableRow>
                         <TableCell>Name</TableCell>
+                        <TableCell align='center'></TableCell>
                         <TableCell align='left'>Id</TableCell>
                         <TableCell align='left'>Type</TableCell>
                         <TableCell align='center'>Edit</TableCell>
@@ -31,7 +32,7 @@ const ContractorList = ({ contractors }) => {
                         ))
                     ) : (
                         <TableRow>
-                            <TableCell colSpan={5}>
+                            <TableCell colSpan={6}>
                                 <Loader />
                             </TableCell>
                         </TableRow>

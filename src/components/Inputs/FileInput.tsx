@@ -1,6 +1,7 @@
 const FileInput = ({
     name,
     label,
+    btnLabel = '+ Add file',
     placeholder,
     error,
     touched,
@@ -12,7 +13,7 @@ const FileInput = ({
         <>
             <label htmlFor={name}>{label}</label>
             <label className='custom-file-upload'>
-                + Add file
+                {btnLabel}
                 <input
                     type='file'
                     accept='image/png, image/jpeg, image/jpg, image/gif'
@@ -27,7 +28,7 @@ const FileInput = ({
                     }}
                 />
                 <p className='error'>{error && touched ? error : null}</p>
-            </label> 
+            </label>
         </>
     )
 }
