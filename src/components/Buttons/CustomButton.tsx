@@ -4,7 +4,7 @@ import { styled } from '@mui/system'
 
 const Button = styled(BaseButton)(
     ({ theme }) => `
-  width: 200px; 
+  width: 100%; 
   font-family: IBM Plex Sans, sans-serif;
   font-weight: 600;
   font-size: 1rem;

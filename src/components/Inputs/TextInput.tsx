@@ -13,7 +13,7 @@ const TextInput = ({
             {label && <label htmlFor={name}>{label}</label>}
             <input
                 name={name}
-                type={type}
+                type={type || 'text'}
                 id={name}
                 placeholder={placeholder}
                 {...field}

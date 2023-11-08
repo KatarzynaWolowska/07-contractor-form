@@ -2,7 +2,7 @@ import BackButton from '../components/Buttons/BackButton'
 import ContractorForm from '../components/Forms/ContractorForm'
 import MainWrapper from '../components/MainWrapper'
 
-const ContractorDetails = () => {
+const NewContractor = () => {
     return (
         <MainWrapper maxWitdh='500px'>
             <BackButton />
@@ -11,4 +11,4 @@ const ContractorDetails = () => {
     )
 }
 
-export default ContractorDetails
+export default NewContractor

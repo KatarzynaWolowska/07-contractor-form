@@ -1,4 +1,4 @@
-const API_URL = 'https://6546492dfe036a2fa955757c.mockapi.io'
+const API_URL = 'https://6546492dfe036a2fa955757c.mockapi.io/contractors/'
 
 const API = async (method: string, endpoint: string, data = null) => {
     const url = `${API_URL}/${endpoint}`

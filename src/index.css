@@ -15,4 +15,35 @@ body {
 
 .error {
     color: #f44;
+    margin: 0 0 8px;
+}
+
+input[type='text'],
+select {
+    height: 56px;
+    padding: 16px;
+    margin: 8px 0;
+    width: 100%;
+    max-width: 400px;
+}
+
+label {
+    display: block;
+}
+
+input[type='file'] {
+    display: none;
+}
+
+.custom-file-upload {
+    display: inline-flex;
+    cursor: pointer;
+    color: #1976d2;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    padding: 6px 8px;
+    margin: 10px 0;
+}
+.custom-file-upload:hover {
+    background-color: rgba(25, 118, 210, 0.04);
 }

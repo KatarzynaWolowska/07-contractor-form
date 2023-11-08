@@ -9,23 +9,26 @@ const FileInput = ({
     ...props
 }) => {
     return (
-        <div>
-            {label && <label htmlFor={name}>{label}</label>}
-            <input
-                type='file'
-                accept='image/png, image/jpeg, image/jpg, image/gif'
-                id={name}
-                name={name}
-                placeholder={placeholder || label}
-                {...props}
-                onChange={e => {
-                    if (e.currentTarget.files) {
-                        setFieldValue('avatar', e.currentTarget.files[0])
-                    }
-                }}
-            />
-            <p className='error'>{error && touched ? error : null}</p>
-        </div>
+        <>
+            <label htmlFor={name}>{label}</label>
+            <label className='custom-file-upload'>
+                + Add file
+                <input
+                    type='file'
+                    accept='image/png, image/jpeg, image/jpg, image/gif'
+                    id={name}
+                    name={name}
+                    placeholder={placeholder || label}
+                    {...props}
+                    onChange={e => {
+                        if (e.currentTarget.files) {
+                            setFieldValue('avatar', e.currentTarget.files[0])
+                        }
+                    }}
+                />
+                <p className='error'>{error && touched ? error : null}</p>
+            </label> 
+        </>
     )
 }
 

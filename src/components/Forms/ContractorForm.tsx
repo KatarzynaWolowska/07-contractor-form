@@ -91,14 +91,18 @@ const ContractorForm = () => {
                             />
                         )}
 
-                        {!isSubmitting && <Button type='submit'>Submit</Button>}
+                        {!isSubmitting && (
+                            <Button type='submit' sx={{ mt: 2 }}>
+                                Submit
+                            </Button>
+                        )}
 
-                        <FormSummary
+                        {/* <FormSummary
                             touched={touched}
                             errors={errors}
                             values={values}
                             isSubmitting={isSubmitting}
-                        />
+                        /> */}
                     </Form>
                 )}
             </Formik>

@@ -1,8 +1,9 @@
 const avatarStyle = {
-    width: '200px',
-    height: '200px',
+    width: '100px',
+    height: '100px',
     borderRadius: '50%',
-    overflow: 'hidden'
+    overflow: 'hidden',
+    margin: '0 auto'
 }
 
 const imgStyle = {

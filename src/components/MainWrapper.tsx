@@ -1,12 +1,13 @@
 import { Container, Box } from '@mui/material'
 
-const MainWrapper = ({ children }) => {
-    return (
-        <Container sx={{ p: 5, pt: 0 }}>
-            <Box sx={{ textAlign: 'center' }}>
-                <h1>Contractors</h1>
-            </Box>
+type MainWrapperProps = {
+    children: any
+    maxWitdh?: string
+}
 
+const MainWrapper = ({ children, maxWitdh = '1280px' }: MainWrapperProps) => {
+    return (
+        <Container sx={{ p: 5, pt: 0, width: maxWitdh }}>
             <Box>{children}</Box>
         </Container>
     )

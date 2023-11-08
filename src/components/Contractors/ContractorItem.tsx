@@ -1,12 +1,14 @@
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 import { Link } from 'react-router-dom'
+import API from '../../api'
 import DeleteButton from '../Buttons/DeleteButton'
 import EditButton from '../Buttons/EditButton'
 
 const ContractorItem = ({ contractor }) => {
     const handleEdit = id => {
         console.log('edit ' + id)
+        console.log(API('GET', id))
     }
 
     const handleDelete = id => {
