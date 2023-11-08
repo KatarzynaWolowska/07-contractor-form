@@ -1,23 +1,25 @@
+import { useEffect, useState } from 'react'
+import API from '../api'
 import ContractorList from '../components/Contractors/ContractorsList'
 import MainWrapper from '../components/MainWrapper'
-import MOCKUP_DATA from '../mockupData'
 
 const Home = () => {
-    // const [data, setData] = useState('')
+    const [data, setData] = useState(null)
 
-    // useEffect(() => {
-    //     fetch('https://6546492dfe036a2fa955757c.mockapi.io/contrators')
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             setData(data)
-    //         })
-    //     console.log('fetch')
-    // }, [])
+    useEffect(() => {
+        API('GET', 'contractors')
+            .then(result => {
+                setData(result)
+            })
+            .catch(error => {
+                console.error(error)
+            })
+    }, [])
 
     return (
         <div className='App'>
             <MainWrapper>
-                <ContractorList contractors={MOCKUP_DATA} />
+                <ContractorList contractors={data} />
             </MainWrapper>
         </div>
     )

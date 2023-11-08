@@ -6,6 +6,7 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
+import Loader from '../Loader'
 
 const ContractorList = ({ contractors }) => {
     return (
@@ -21,12 +22,20 @@ const ContractorList = ({ contractors }) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {contractors.map(contractor => (
-                        <ContractorItem
-                            key={contractor.id}
-                            contractor={contractor}
-                        />
-                    ))}
+                    {contractors ? (
+                        contractors.map(contractor => (
+                            <ContractorItem
+                                key={contractor.id}
+                                contractor={contractor}
+                            />
+                        ))
+                    ) : (
+                        <TableRow>
+                            <TableCell colSpan={5}>
+                                <Loader />
+                            </TableCell>
+                        </TableRow>
+                    )}
                 </TableBody>
             </Table>
         </TableContainer>
