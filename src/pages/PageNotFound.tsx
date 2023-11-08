@@ -1,5 +1,5 @@
 import { Typography, Box } from '@mui/material'
-import BackButton from '../components/BackButton'
+import BackButton from '../components/Buttons/BackButton'
 import MainWrapper from '../components/MainWrapper'
 
 const PageNotFound = () => {
