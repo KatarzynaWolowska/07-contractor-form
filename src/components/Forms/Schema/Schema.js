@@ -1,10 +1,15 @@
 import * as Yup from 'yup'
-import validatePesel from './validate'
+import validatePesel from './validatePesel'
+import validateAspectRatio from './validateAspectRatio'
 
 const validationSchema = Yup.object({
     name: Yup.string().required('Required'),
-    avatar: Yup.string().optional(),
     surname: Yup.string(),
+    avatar: Yup.mixed()
+        .optional()
+        .test('aspectRatio', 'Square photo needed', file =>
+            validateAspectRatio(file)
+        ),
     id: Yup.string().when('type', {
         is: value => value === 'person',
         then: schema =>
@@ -14,7 +19,6 @@ const validationSchema = Yup.object({
         otherwise: schema =>
             schema.required('Required').matches(/^\d{10}$/, 'NIP required')
     }),
-
     type: Yup.string()
         .oneOf(['person', 'company'], 'Invalid type')
         .required('Required')

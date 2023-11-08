@@ -1,4 +1,4 @@
-const validatePesel = (value: string) => {
+const validatePesel = value => {
     if (!value) return true
 
     const month = Number(value.substring(2, 4))

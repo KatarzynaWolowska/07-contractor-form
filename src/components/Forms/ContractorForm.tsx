@@ -58,14 +58,7 @@ const ContractorForm = () => {
                             console.error(error)
                         })
                 }}>
-                {({
-                    isSubmitting,
-                    errors,
-                    touched,
-                    values,
-                    setFieldValue,
-                    initialValues
-                }) => (
+                {({ isSubmitting, errors, touched, values, setFieldValue }) => (
                     <Form noValidate>
                         <Field
                             name='name'
@@ -139,13 +132,12 @@ const ContractorForm = () => {
                             </Button>
                         )}
 
-                        <FormSummary
+                        {/* <FormSummary
                             touched={touched}
                             errors={errors}
                             values={values}
-                            isSubmitting={isSubmitting}
-                            initialValues={initialValues}
-                        />
+                            isSubmitting={isSubmitting} 
+                        /> */}
                     </Form>
                 )}
             </Formik>
