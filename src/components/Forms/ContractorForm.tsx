@@ -1,15 +1,22 @@
 import { Paper } from '@mui/material'
 import { Field, Form, Formik } from 'formik'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import API from '../../api'
 import Avatar from '../Avatar'
 import Button from '../Buttons/CustomButton'
 import FileInput from '../Inputs/FileInput'
 import Select from '../Inputs/Select'
 import TextInput from '../Inputs/TextInput'
-import FormSummary from './FormSummary'
 import validationSchema from './Schema/Schema'
+import FormSummary from './FormSummary'
 
 const ContractorForm = () => {
-    const initialValues = {
+    const [data, setData] = useState(null)
+
+    const { id } = useParams()
+
+    let initialValues = {
         name: '',
         surname: '',
         type: 'person',
@@ -22,16 +29,35 @@ const ContractorForm = () => {
         { value: 'company', label: 'company' }
     ]
 
+    useEffect(() => {
+        id &&
+            API('GET', id)
+                .then(result => {
+                    setData(result)
+                })
+                .catch(error => {
+                    console.error(error)
+                })
+    }, [])
+
     return (
         <Paper sx={{ p: 5, mt: 2 }}>
             <Formik
-                initialValues={initialValues}
+                initialValues={data === null ? initialValues : data}
+                enableReinitialize={true}
                 validationSchema={validationSchema}
                 onSubmit={(values, { setSubmitting }) => {
                     setSubmitting(false)
                     alert(JSON.stringify(values, null, 2))
                 }}>
-                {({ isSubmitting, errors, touched, values, setFieldValue }) => (
+                {({
+                    isSubmitting,
+                    errors,
+                    touched,
+                    values,
+                    setFieldValue,
+                    initialValues
+                }) => (
                     <Form noValidate>
                         <Field
                             name='name'
@@ -84,9 +110,13 @@ const ContractorForm = () => {
                             required
                         />
 
-                        {values.avatar && (
+                        {values?.avatar && (
                             <Avatar
-                                src={URL.createObjectURL(values.avatar)}
+                                src={
+                                    data
+                                        ? values.avatar
+                                        : URL.createObjectURL(values.avatar)
+                                }
                                 alt='Podgląd zdjęcia'
                             />
                         )}
@@ -97,12 +127,13 @@ const ContractorForm = () => {
                             </Button>
                         )}
 
-                        {/* <FormSummary
+                        <FormSummary
                             touched={touched}
                             errors={errors}
                             values={values}
                             isSubmitting={isSubmitting}
-                        /> */}
+                            initialValues={initialValues}
+                        />
                     </Form>
                 )}
             </Formik>

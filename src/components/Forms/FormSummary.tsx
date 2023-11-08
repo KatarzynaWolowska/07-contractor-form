@@ -12,6 +12,10 @@ const FormSummary = ({ ...props }) => {
                 <code>values:</code> {JSON.stringify(props.values, null, 2)}
             </div>
             <div>
+                <code>initialValues:</code>{' '}
+                {JSON.stringify(props.initialValues, null, 2)}
+            </div>
+            <div>
                 <code>isSubmitting:</code>{' '}
                 {JSON.stringify(props.isSubmitting, null, 2)}
             </div>

@@ -8,7 +8,6 @@ import EditButton from '../Buttons/EditButton'
 const ContractorItem = ({ contractor }) => {
     const handleEdit = id => {
         console.log('edit ' + id)
-        console.log(API('GET', id))
     }
 
     const handleDelete = id => {
