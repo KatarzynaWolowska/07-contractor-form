@@ -20,7 +20,7 @@ const ContractorForm = () => {
         surname: '',
         type: 'person',
         id: '',
-        avatar: null
+        avatar: ''
     }
 
     const options = [
@@ -47,7 +47,16 @@ const ContractorForm = () => {
                 validationSchema={validationSchema}
                 onSubmit={(values, { setSubmitting }) => {
                     setSubmitting(false)
-                    alert(JSON.stringify(values, null, 2))
+
+                    console.log(values.avatar)
+
+                    API('POST', '', values)
+                        .then(() => {
+                            alert(JSON.stringify(values, null, 2))
+                        })
+                        .catch(error => {
+                            console.error(error)
+                        })
                 }}>
                 {({
                     isSubmitting,
@@ -101,7 +110,9 @@ const ContractorForm = () => {
                         <Field
                             name='avatar'
                             label='Avatar:'
-                            btnLabel={data?.avatar && 'Change avatar'}
+                            btnLabel={
+                                data?.avatar ? 'Change avatar' : '+ Add file'
+                            }
                             placeholder='Avatar'
                             component={FileInput}
                             error={errors.avatar}

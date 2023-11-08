@@ -14,8 +14,8 @@ const ContractorList = ({ contractors }) => {
             <Table sx={{ minWidth: 650 }} aria-label='contractors table'>
                 <TableHead>
                     <TableRow>
-                        <TableCell>Name</TableCell>
-                        <TableCell align='center'></TableCell>
+                        <TableCell></TableCell>
+                        <TableCell align='left'>Name</TableCell>
                         <TableCell align='left'>Id</TableCell>
                         <TableCell align='left'>Type</TableCell>
                         <TableCell align='center'>Edit</TableCell>

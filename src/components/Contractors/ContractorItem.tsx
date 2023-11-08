@@ -32,7 +32,7 @@ const ContractorItem = ({ contractor }) => {
                         border: 0
                     }
                 }}>
-                <TableCell align='left'>
+                <TableCell align='center'>
                     {avatar.length > 0 ? (
                         <Avatar src={avatar} />
                     ) : (
