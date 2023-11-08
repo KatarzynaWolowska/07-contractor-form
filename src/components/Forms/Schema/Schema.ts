@@ -3,7 +3,7 @@ import validatePesel from './validate'
 
 const validationSchema = Yup.object({
     name: Yup.string().required('Required'),
-    avatar: Yup.string(),
+    avatar: Yup.string().optional(),
     surname: Yup.string(),
     id: Yup.string().when('type', {
         is: value => value === 'person',
