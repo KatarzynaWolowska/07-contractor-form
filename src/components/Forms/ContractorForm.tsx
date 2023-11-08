@@ -14,7 +14,7 @@ const ContractorForm = () => {
         surname: '',
         type: 'person',
         id: '',
-        avatar: ''
+        avatar: null
     }
 
     const options = [
