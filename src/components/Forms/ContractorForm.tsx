@@ -1,7 +1,7 @@
 import { Avatar, Paper } from '@mui/material'
 import { Field, Form, Formik } from 'formik'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import API from '../../api'
 import Button from '../Buttons/CustomButton'
 import FileInput from '../Inputs/FileInput'
@@ -15,6 +15,8 @@ const ContractorForm = () => {
     const [editMode, setEditMode] = useState(false)
 
     const { id } = useParams()
+
+    const navigate = useNavigate()
 
     let initialValues = {
         name: '',
@@ -55,7 +57,8 @@ const ContractorForm = () => {
                     if (editMode) {
                         API('PUT', id, values)
                             .then(() => {
-                                alert(JSON.stringify(values, null, 2))
+                                // alert(JSON.stringify(values, null, 2))
+                                navigate(-1)
                             })
                             .catch(error => {
                                 console.error(error)
@@ -63,8 +66,9 @@ const ContractorForm = () => {
                     } else {
                         API('POST', '', values)
                             .then(() => {
-                                alert(JSON.stringify(values, null, 2))
-                                resetForm()
+                                // alert(JSON.stringify(values, null, 2))
+                                // resetForm()
+                                navigate(-1)
                             })
                             .catch(error => {
                                 console.error(error)
