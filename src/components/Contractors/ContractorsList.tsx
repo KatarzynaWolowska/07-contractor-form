@@ -9,9 +9,18 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import Loader from '../Loader'
 import API from '../../api'
+import Toast from '../Toast'
+import { ToastType } from '../types/Toast'
 
 const ContractorList = () => {
     const [data, setData] = useState(null)
+
+    const [toast, setToast] = useState<ToastType>({
+        message: '',
+        variant: 'info'
+    })
+
+    const [isVisibleToast, setIsVisibleToast] = useState(false)
 
     useEffect(() => {
         API('GET', '')
@@ -33,6 +42,11 @@ const ContractorList = () => {
                 console.log('delete ' + id)
                 const newData = data.filter(item => item.id !== id)
                 setData(newData)
+                setToast({
+                    message: 'Deleted!',
+                    variant: 'success'
+                })
+                setIsVisibleToast(true)
             })
             .catch(error => {
                 console.error(error)
@@ -40,38 +54,41 @@ const ContractorList = () => {
     }
 
     return (
-        <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label='contractors table'>
-                <TableHead>
-                    <TableRow>
-                        <TableCell></TableCell>
-                        <TableCell align='left'>Name</TableCell>
-                        <TableCell align='left'>Id</TableCell>
-                        <TableCell align='left'>Type</TableCell>
-                        <TableCell align='center'>Edit</TableCell>
-                        <TableCell align='center'>Delete</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {data ? (
-                        data.map(contractor => (
-                            <ContractorItem
-                                key={contractor.id}
-                                contractor={contractor}
-                                handleDelete={handleDelete}
-                                handleEdit={handleEdit}
-                            />
-                        ))
-                    ) : (
+        <>
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label='contractors table'>
+                    <TableHead>
                         <TableRow>
-                            <TableCell colSpan={6}>
-                                <Loader />
-                            </TableCell>
+                            <TableCell></TableCell>
+                            <TableCell align='left'>Name</TableCell>
+                            <TableCell align='left'>Id</TableCell>
+                            <TableCell align='left'>Type</TableCell>
+                            <TableCell align='center'>Edit</TableCell>
+                            <TableCell align='center'>Delete</TableCell>
                         </TableRow>
-                    )}
-                </TableBody>
-            </Table>
-        </TableContainer>
+                    </TableHead>
+                    <TableBody>
+                        {data ? (
+                            data.map(contractor => (
+                                <ContractorItem
+                                    key={contractor.id}
+                                    contractor={contractor}
+                                    handleDelete={handleDelete}
+                                    handleEdit={handleEdit}
+                                />
+                            ))
+                        ) : (
+                            <TableRow>
+                                <TableCell colSpan={6}>
+                                    <Loader />
+                                </TableCell>
+                            </TableRow>
+                        )}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            {isVisibleToast && <Toast toast={toast} />}
+        </>
     )
 }
 
