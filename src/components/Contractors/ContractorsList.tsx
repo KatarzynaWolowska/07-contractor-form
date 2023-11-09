@@ -9,18 +9,10 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import Loader from '../Loader'
 import API from '../../api'
-import Toast from '../Toast'
-import { ToastType } from '../types/Toast'
+import { toast } from 'react-toastify'
 
 const ContractorList = () => {
     const [data, setData] = useState(null)
-
-    const [toast, setToast] = useState<ToastType>({
-        message: '',
-        variant: 'info'
-    })
-
-    const [isVisibleToast, setIsVisibleToast] = useState(false)
 
     useEffect(() => {
         API('GET', '')
@@ -42,11 +34,7 @@ const ContractorList = () => {
                 console.log('delete ' + id)
                 const newData = data.filter(item => item.id !== id)
                 setData(newData)
-                setToast({
-                    message: 'Deleted!',
-                    variant: 'success'
-                })
-                setIsVisibleToast(true)
+                toast.success('Deleted!')
             })
             .catch(error => {
                 console.error(error)
@@ -87,7 +75,6 @@ const ContractorList = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            {isVisibleToast && <Toast toast={toast} />}
         </>
     )
 }

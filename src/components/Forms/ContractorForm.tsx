@@ -9,6 +9,7 @@ import Select from '../Inputs/Select'
 import TextInput from '../Inputs/TextInput'
 import validationSchema from './Schema/Schema'
 import FormSummary from './FormSummary'
+import { toast } from 'react-toastify'
 
 const ContractorForm = () => {
     const [data, setData] = useState(null)
@@ -49,7 +50,7 @@ const ContractorForm = () => {
                 initialValues={data === null ? initialValues : data}
                 enableReinitialize={true}
                 validationSchema={validationSchema}
-                onSubmit={(values, { setSubmitting, resetForm }) => {
+                onSubmit={(values, { setSubmitting }) => {
                     setSubmitting(false)
 
                     console.log(values.avatar)
@@ -59,9 +60,11 @@ const ContractorForm = () => {
                             .then(() => {
                                 // alert(JSON.stringify(values, null, 2))
                                 navigate(-1)
+                                toast.success('Saved changes!')
                             })
                             .catch(error => {
                                 console.error(error)
+                                toast.success('Error!')
                             })
                     } else {
                         API('POST', '', values)
@@ -69,9 +72,11 @@ const ContractorForm = () => {
                                 // alert(JSON.stringify(values, null, 2))
                                 // resetForm()
                                 navigate(-1)
+                                toast.success('Saved!')
                             })
                             .catch(error => {
                                 console.error(error)
+                                toast.success('Error!')
                             })
                     }
                 }}>
