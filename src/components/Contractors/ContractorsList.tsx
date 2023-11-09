@@ -23,6 +23,22 @@ const ContractorList = () => {
             })
     }, [])
 
+    const handleEdit = id => {
+        console.log('edit ' + id)
+    }
+
+    const handleDelete = id => {
+        API('DELETE', id)
+            .then(() => {
+                console.log('delete ' + id)
+                const newData = data.filter(item => item.id !== id)
+                setData(newData)
+            })
+            .catch(error => {
+                console.error(error)
+            })
+    }
+
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label='contractors table'>
@@ -42,6 +58,8 @@ const ContractorList = () => {
                             <ContractorItem
                                 key={contractor.id}
                                 contractor={contractor}
+                                handleDelete={handleDelete}
+                                handleEdit={handleEdit}
                             />
                         ))
                     ) : (
