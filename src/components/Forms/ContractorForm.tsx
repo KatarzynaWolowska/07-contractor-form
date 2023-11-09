@@ -12,6 +12,7 @@ import FormSummary from './FormSummary'
 
 const ContractorForm = () => {
     const [data, setData] = useState(null)
+    const [editMode, setEditMode] = useState(false)
 
     const { id } = useParams()
 
@@ -37,6 +38,7 @@ const ContractorForm = () => {
                 .catch(error => {
                     console.error(error)
                 })
+        id && setEditMode(true)
     }, [])
 
     return (
@@ -45,18 +47,29 @@ const ContractorForm = () => {
                 initialValues={data === null ? initialValues : data}
                 enableReinitialize={true}
                 validationSchema={validationSchema}
-                onSubmit={(values, { setSubmitting }) => {
+                onSubmit={(values, { setSubmitting, resetForm }) => {
                     setSubmitting(false)
 
                     console.log(values.avatar)
 
-                    API('POST', '', values)
-                        .then(() => {
-                            alert(JSON.stringify(values, null, 2))
-                        })
-                        .catch(error => {
-                            console.error(error)
-                        })
+                    if (editMode) {
+                        API('PUT', id, values)
+                            .then(() => {
+                                alert(JSON.stringify(values, null, 2))
+                            })
+                            .catch(error => {
+                                console.error(error)
+                            })
+                    } else {
+                        API('POST', '', values)
+                            .then(() => {
+                                alert(JSON.stringify(values, null, 2))
+                                resetForm()
+                            })
+                            .catch(error => {
+                                console.error(error)
+                            })
+                    }
                 }}>
                 {({ isSubmitting, errors, touched, values, setFieldValue }) => (
                     <Form noValidate>
@@ -110,11 +123,11 @@ const ContractorForm = () => {
                             component={FileInput}
                             error={errors.avatar}
                             touched={touched.avatar}
-                            setFieldValue={setFieldValue}
+                            setFieldValue={editMode ? '' : setFieldValue}
                             required
                         />
 
-                        {values?.avatar && (
+                        {values?.avatar && !editMode && (
                             <Avatar
                                 src={
                                     data
