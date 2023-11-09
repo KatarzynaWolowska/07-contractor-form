@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import ContractorItem from './ContractorItem'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -7,8 +8,21 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import Loader from '../Loader'
+import API from '../../api'
 
-const ContractorList = ({ contractors }) => {
+const ContractorList = () => {
+    const [data, setData] = useState(null)
+
+    useEffect(() => {
+        API('GET', '')
+            .then(result => {
+                setData(result)
+            })
+            .catch(error => {
+                console.error(error)
+            })
+    }, [])
+
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label='contractors table'>
@@ -23,8 +37,8 @@ const ContractorList = ({ contractors }) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {contractors ? (
-                        contractors.map(contractor => (
+                    {data ? (
+                        data.map(contractor => (
                             <ContractorItem
                                 key={contractor.id}
                                 contractor={contractor}
